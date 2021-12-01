@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCodeUtilities", "Ut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateProject", "TemplateProject\TemplateProject.csproj", "{65208485-CE44-4757-AFA3-7F37373400BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_1_Sonar_Sweep", "Day_1_Sonar_Sweep\Day_1_Sonar_Sweep.csproj", "{EC87F071-08C5-461F-947B-AB094D5C1B6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{65208485-CE44-4757-AFA3-7F37373400BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65208485-CE44-4757-AFA3-7F37373400BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65208485-CE44-4757-AFA3-7F37373400BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC87F071-08C5-461F-947B-AB094D5C1B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC87F071-08C5-461F-947B-AB094D5C1B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC87F071-08C5-461F-947B-AB094D5C1B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC87F071-08C5-461F-947B-AB094D5C1B6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
