@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_6_Laternfish", "Day_6_L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_7_The_Treachery_of_Whales", "Day_7_The_Treachery_of_Whales\Day_7_The_Treachery_of_Whales.csproj", "{79F1F2F9-17D8-4D27-A23D-40B2AA44D5DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_8_Seven_Segment_Search", "Day_8_Seven_Segment_Search\Day_8_Seven_Segment_Search.csproj", "{817A8BB1-DB30-4AE4-BF8E-28F16BD6A15F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{79F1F2F9-17D8-4D27-A23D-40B2AA44D5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79F1F2F9-17D8-4D27-A23D-40B2AA44D5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79F1F2F9-17D8-4D27-A23D-40B2AA44D5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{817A8BB1-DB30-4AE4-BF8E-28F16BD6A15F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817A8BB1-DB30-4AE4-BF8E-28F16BD6A15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817A8BB1-DB30-4AE4-BF8E-28F16BD6A15F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817A8BB1-DB30-4AE4-BF8E-28F16BD6A15F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
