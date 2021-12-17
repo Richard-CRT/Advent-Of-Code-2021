@@ -36,7 +36,7 @@ namespace Day_17_Trick_Shot
             int minX = 1;
             int maxX = xHigh; // Higher than this will overshoot
             int minY = 1; // Trickshot will only go up
-            int maxY = 100; // Guess :)
+            int maxY = Math.Abs(yLow); // Anything faster than this will overshoot when crossing y=0
 
             int highestY = 0;
             for (int y = minY; y <= maxY; y++)
@@ -59,7 +59,7 @@ namespace Day_17_Trick_Shot
             int minX = 1;
             int maxX = xHigh; // Higher than this will overshoot
             int minY = yLow; // Lower than this will overshoot
-            int maxY = 100; // Guess :)
+            int maxY = Math.Abs(yLow); // Anything faster than this will overshoot when crossing y=0
 
             int numberOfSolutions = 0;
             for (int y = minY; y <= maxY; y++)
