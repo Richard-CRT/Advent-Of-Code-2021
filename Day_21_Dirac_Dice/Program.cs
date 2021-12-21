@@ -54,24 +54,32 @@ namespace Day_21_Dirac_Dice
 
         static void P2(int p1Position, int p2Position)
         {
-            Turn(true, 3, 1, p1Position, p2Position, 0, 0);
-            Turn(true, 4, 3, p1Position, p2Position, 0, 0);
-            Turn(true, 5, 6, p1Position, p2Position, 0, 0);
-            Turn(true, 6, 7, p1Position, p2Position, 0, 0);
-            Turn(true, 7, 6, p1Position, p2Position, 0, 0);
-            Turn(true, 8, 3, p1Position, p2Position, 0, 0);
-            Turn(true, 9, 1, p1Position, p2Position, 0, 0);
+            Int64 p1UniverseWinCount = 0;
+            Int64 p2UniverseWinCount = 0;
+
+            (Int64, Int64) temp1 = Turn(true, 3, 1, p1Position, p2Position, 0, 0);
+            (Int64, Int64) temp2 = Turn(true, 4, 3, p1Position, p2Position, 0, 0);
+            (Int64, Int64) temp3 = Turn(true, 5, 6, p1Position, p2Position, 0, 0);
+            (Int64, Int64) temp4 = Turn(true, 6, 7, p1Position, p2Position, 0, 0);
+            (Int64, Int64) temp5 = Turn(true, 7, 6, p1Position, p2Position, 0, 0);
+            (Int64, Int64) temp6 = Turn(true, 8, 3, p1Position, p2Position, 0, 0);
+            (Int64, Int64) temp7 = Turn(true, 9, 1, p1Position, p2Position, 0, 0);
+
+            p1UniverseWinCount += temp1.Item1 + temp2.Item1 + temp3.Item1 + temp4.Item1 + temp5.Item1 + temp6.Item1 + temp7.Item1;
+            p2UniverseWinCount += temp1.Item2 + temp2.Item2 + temp3.Item2 + temp4.Item2 + temp5.Item2 + temp6.Item2 + temp7.Item2;
 
             Int64 result = p1UniverseWinCount > p2UniverseWinCount ? p1UniverseWinCount : p2UniverseWinCount;
             Console.WriteLine(result);
             Console.ReadLine();
         }
 
-        static Int64 p1UniverseWinCount = 0;
-        static Int64 p2UniverseWinCount = 0;
+        static Dictionary<(bool, int, int, int, int), (Int64, Int64)> cache = new Dictionary<(bool, int, int, int, int), (long, long)>();
 
-        static void Turn(bool p1Turn, int sumRoll, Int64 numberRolls, int p1Position, int p2Position, int p1Score, int p2Score)
+        static (Int64, Int64) Turn(bool p1Turn, int sumRoll, Int64 numberRolls, int p1Position, int p2Position, int p1Score, int p2Score)
         {
+            Int64 p1UniverseWinCount = 0;
+            Int64 p2UniverseWinCount = 0;
+
             if (p1Turn)
             {
                 p1Position = (p1Position + sumRoll) % 10;
@@ -86,21 +94,46 @@ namespace Day_21_Dirac_Dice
             if (p1Score >= 21)
             {
                 p1UniverseWinCount += numberRolls;
-                return;
+                return (p1UniverseWinCount, p2UniverseWinCount);
             }
             else if (p2Score >= 21)
             {
                 p2UniverseWinCount += numberRolls;
-                return;
+                return (p1UniverseWinCount, p2UniverseWinCount);
             }
 
-            Turn(!p1Turn, 3, numberRolls * 1, p1Position, p2Position, p1Score, p2Score);
-            Turn(!p1Turn, 4, numberRolls * 3, p1Position, p2Position, p1Score, p2Score);
-            Turn(!p1Turn, 5, numberRolls * 6, p1Position, p2Position, p1Score, p2Score);
-            Turn(!p1Turn, 6, numberRolls * 7, p1Position, p2Position, p1Score, p2Score);
-            Turn(!p1Turn, 7, numberRolls * 6, p1Position, p2Position, p1Score, p2Score);
-            Turn(!p1Turn, 8, numberRolls * 3, p1Position, p2Position, p1Score, p2Score);
-            Turn(!p1Turn, 9, numberRolls * 1, p1Position, p2Position, p1Score, p2Score);
+            var cacheKey = (p1Turn, p1Position, p2Position, p1Score, p2Score);
+
+            Int64 p1UniverseWinInc;
+            Int64 p2UniverseWinInc;
+
+            if (cache.ContainsKey(cacheKey))
+            {
+                var (cacheP1UniverseWinCount, cacheP2UniverseWinCount) = cache[cacheKey];
+                p1UniverseWinInc = cacheP1UniverseWinCount;
+                p2UniverseWinInc = cacheP2UniverseWinCount;
+            }
+            else
+            {
+                (Int64, Int64) temp1 = Turn(!p1Turn, 3,  1, p1Position, p2Position, p1Score, p2Score);
+                (Int64, Int64) temp2 = Turn(!p1Turn, 4,  3, p1Position, p2Position, p1Score, p2Score);
+                (Int64, Int64) temp3 = Turn(!p1Turn, 5,  6, p1Position, p2Position, p1Score, p2Score);
+                (Int64, Int64) temp4 = Turn(!p1Turn, 6,  7, p1Position, p2Position, p1Score, p2Score);
+                (Int64, Int64) temp5 = Turn(!p1Turn, 7,  6, p1Position, p2Position, p1Score, p2Score);
+                (Int64, Int64) temp6 = Turn(!p1Turn, 8,  3, p1Position, p2Position, p1Score, p2Score);
+                (Int64, Int64) temp7 = Turn(!p1Turn, 9,  1, p1Position, p2Position, p1Score, p2Score);
+
+                p1UniverseWinInc = temp1.Item1 + temp2.Item1 + temp3.Item1 + temp4.Item1 + temp5.Item1 + temp6.Item1 + temp7.Item1;
+                p2UniverseWinInc = temp1.Item2 + temp2.Item2 + temp3.Item2 + temp4.Item2 + temp5.Item2 + temp6.Item2 + temp7.Item2;
+
+                var cacheValue = (p1UniverseWinInc, p2UniverseWinInc);
+                cache[cacheKey] = cacheValue;
+            }
+
+            p1UniverseWinCount += numberRolls * p1UniverseWinInc;
+            p2UniverseWinCount += numberRolls * p2UniverseWinInc;
+
+            return (p1UniverseWinCount, p2UniverseWinCount);
         }
     }
 
