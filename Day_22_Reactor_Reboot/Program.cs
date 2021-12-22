@@ -277,21 +277,15 @@ public class Cuboid
         }
         cuboids = newCuboids;
 
-        if (cuboids.Count == 1)
-            // special case optimisation, if it overlaps and but no cuts made, must be completely encompassed by otherCube
-            cuboids.RemoveAt(0);
-        else
+        for (int i = 0; i < cuboids.Count;)
         {
-            for (int i = 0; i < cuboids.Count;)
+            if (cuboids[i].EncompassedBy(otherCuboid))
+                cuboids.RemoveAt(i);
+            else
             {
-                if (cuboids[i].EncompassedBy(otherCuboid))
-                    cuboids.RemoveAt(i);
-                else
-                {
-                    if (cuboids[i].Overlaps(otherCuboid))
-                        throw new Exception();
-                    i++;
-                }
+                if (cuboids[i].Overlaps(otherCuboid))
+                    throw new Exception();
+                i++;
             }
         }
 
