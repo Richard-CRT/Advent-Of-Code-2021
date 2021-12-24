@@ -14,142 +14,89 @@ namespace Day_24_Arithmetic_Logic_Unit
         {
             List<string> inputList = AoCUtilities.GetInputLines();
 
-            Console.WriteLine(System.Runtime.InteropServices.Marshal.SizeOf(typeof(State)));
 
-            Dictionary<(int, int, int, int), State> states = new Dictionary<(int, int, int, int), State>();
-            states[(0, 0, 0, 0)] = new State(0, 0, 0, 0, 0);
-
-
-
-            foreach (string inst in inputList)
+            List<List<string>> blocks = new List<List<string>>();
+            for (int blockStart = 0; blockStart < inputList.Count; blockStart += 18)
             {
-                if (inst[1] == 'n') // input
+                List<string> block = new List<string>();
+                for (int i = blockStart; i < blockStart + 18; i++)
                 {
-                    Dictionary<(int, int, int, int), State> newStates = new Dictionary<(int, int, int, int), State>();
-                    foreach (var kVP in states)
-                    {
-                        for (int i = 9; i >= 1; i--)
-                        {
-                            int newInputNumber = (kVP.Value.inputNumber * 10) + i;
-                            var stateKey = (i, kVP.Value.values[1], kVP.Value.values[2], kVP.Value.values[3]);
-                            if (newStates.ContainsKey(stateKey))
-                            {
-                                if (newInputNumber > newStates[stateKey].inputNumber)
-                                {
-                                    newStates[stateKey] = new State(i, kVP.Value.values[1], kVP.Value.values[2], kVP.Value.values[3], newInputNumber);
-                                }
-                            }
-                            else
-                                newStates[stateKey] = new State(i, kVP.Value.values[1], kVP.Value.values[2], kVP.Value.values[3], newInputNumber);
-                        }
-                    }
-                    states = newStates;
-                    Console.WriteLine($"Processing {states.Count} states");
+                    block.Add(inputList[i]);
                 }
-                else
-                {
-                    string[] split = inst.Split(' ');
-                    string op = split[0];
-                    char op1 = split[1][0];
-                    string op2 = split[2];
-                    int op2Literal = -1;
-
-                    int srcPos = -1;
-                    if (op2[0] < 'w' || op2[0] > 'z')
-                        op2Literal = int.Parse(op2);
-                    else
-                    {
-                        switch (op2[0])
-                        {
-                            case 'w':
-                                srcPos = 0;
-                                break;
-                            case 'x':
-                                srcPos = 1;
-                                break;
-                            case 'y':
-                                srcPos = 2;
-                                break;
-                            case 'z':
-                                srcPos = 3;
-                                break;
-                        }
-                    }
-
-                    int destPos = 0;
-                    switch (op1)
-                    {
-                        case 'w':
-                            destPos = 0;
-                            break;
-                        case 'x':
-                            destPos = 1;
-                            break;
-                        case 'y':
-                            destPos = 2;
-                            break;
-                        case 'z':
-                            destPos = 3;
-                            break;
-                    }
-
-                    switch (op)
-                    {
-                        case "add":
-                            foreach (var kVP in states)
-                            {
-                                kVP.Value.values[destPos] = kVP.Value.values[destPos] + (op2Literal != -1 ? op2Literal : kVP.Value.values[srcPos]);
-                            }
-                            break;
-                        case "mul":
-                            foreach (var kVP in states)
-                            {
-                                kVP.Value.values[destPos] = kVP.Value.values[destPos] * (op2Literal != -1 ? op2Literal : kVP.Value.values[srcPos]);
-                            }
-                            break;
-                        case "div":
-                            foreach (var kVP in states)
-                            {
-                                kVP.Value.values[destPos] = kVP.Value.values[destPos] / (op2Literal != -1 ? op2Literal : kVP.Value.values[srcPos]);
-                            }
-                            break;
-                        case "mod":
-                            foreach (var kVP in states)
-                            {
-                                kVP.Value.values[destPos] = kVP.Value.values[destPos] % (op2Literal != -1 ? op2Literal : kVP.Value.values[srcPos]);
-                            }
-                            break;
-                        case "eql":
-                            foreach (var kVP in states)
-                            {
-                                kVP.Value.values[destPos] = (kVP.Value.values[destPos] == (op2Literal != -1 ? op2Literal : kVP.Value.values[srcPos])) ? 1 : 0;
-                            }
-                            break;
-                    }
-                }
+                blocks.Add(block);
             }
-        }
-    }
-    
-    public struct State
-    {
-        public int[] values;
 
-        public int inputNumber;
-
-        public State(int _w, int _x, int _y, int _z, int _inputNumber)
-        {
-            values = new int[4];
-            values[0] = _w;
-            values[1] = _x;
-            values[2] = _y;
-            values[3] = _z;
-            this.inputNumber = _inputNumber;
+            P1(blocks);
+            P2(blocks);
         }
 
-        public override string ToString()
+        static void P1(List<List<string>> blocks)
         {
-            return $"{values[0]},{values[1]},{values[2]},{values[3]},{inputNumber}";
+            Dictionary<Int64, Int64> states = new Dictionary<Int64, Int64>();
+            states[0] = 0;
+
+            states = Execute(blocks, states, false);
+
+            Console.WriteLine(states[0]);
+            Console.ReadLine();
+        }
+
+        static void P2(List<List<string>> blocks)
+        {
+            Dictionary<Int64, Int64> states = new Dictionary<Int64, Int64>();
+            states[0] = 0;
+
+            states = Execute(blocks, states, true);
+
+            Console.WriteLine(states[0]);
+            Console.ReadLine();
+        }
+
+        static Dictionary<Int64, Int64> Execute(List<List<string>> blocks, Dictionary<Int64, Int64> states, bool P2)
+        {
+            int start = P2 ? 1 : 9;
+            int target = P2 ? 9 : 1;
+            int increment = P2 ? 1 : -1;
+            foreach (List<string> block in blocks)
+            {
+                Dictionary<Int64, Int64> newStates = new Dictionary<Int64, Int64>();
+                foreach (var kVP in states)
+                {
+                    for (int inVal = start; (P2 && inVal <= target) || (!P2 && inVal >= target); inVal += increment)
+                    {
+                        Int64 zVal = kVP.Key;
+                        Int64 inputNumberSoFar = kVP.Value;
+
+                        // Decompiled
+                        int const1 = int.Parse(block[4].Split(' ')[2]);
+                        int const2 = int.Parse(block[5].Split(' ')[2]);
+                        int const3 = int.Parse(block[15].Split(' ')[2]);
+
+                        Int64 tempVar = (zVal % 26) + const2;
+                        zVal /= const1;
+                        if (tempVar != inVal)
+                        {
+                            zVal = (zVal * 26) + inVal + const3;
+                        }
+                        inputNumberSoFar = inputNumberSoFar * 10 + inVal;
+
+                        if (newStates.ContainsKey(zVal))
+                        {
+                            if ((!P2 && inputNumberSoFar > newStates[zVal]) || (P2 && inputNumberSoFar < newStates[zVal]))
+                                newStates[zVal] = inputNumberSoFar;
+                        }
+                        else
+                        {
+                            newStates[zVal] = inputNumberSoFar;
+                        }
+                    }
+                }
+                states = newStates;
+
+                //Console.WriteLine(states.Count);
+            }
+
+            return states;
         }
     }
 }
