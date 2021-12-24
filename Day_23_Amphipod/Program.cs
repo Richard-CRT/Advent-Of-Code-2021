@@ -36,7 +36,7 @@ namespace Day_23_Amphipod
             originalStateP2.P2 = true;
             State.cache[originalStateP1.UniqueStringRep()] = originalStateP1;
 
-            //P1(originalStateP1);
+            P1(originalStateP1);
 
             originalStateP2.ARoom.Insert(1, 'D');
             originalStateP2.ARoom.Insert(1, 'D');
