@@ -276,6 +276,11 @@ namespace Day_19_Beacon_Scanner
                 return base.Equals(obj);
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return $"({X},{Y},{Z})";
