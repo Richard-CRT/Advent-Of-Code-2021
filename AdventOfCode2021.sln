@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_22_Reactor_Reboot", "Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_23_Amphipod", "Day_23_Amphipod\Day_23_Amphipod.csproj", "{CE308436-889F-40CE-83C3-BA088E554669}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_24_Arithmetic_Logic_Unit", "Day_24_Arithmetic_Logic_Unit\Day_24_Arithmetic_Logic_Unit.csproj", "{1F5EB0B2-3C4F-4B69-B9E2-33BE7AD1A533}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +161,10 @@ Global
 		{CE308436-889F-40CE-83C3-BA088E554669}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE308436-889F-40CE-83C3-BA088E554669}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE308436-889F-40CE-83C3-BA088E554669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F5EB0B2-3C4F-4B69-B9E2-33BE7AD1A533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F5EB0B2-3C4F-4B69-B9E2-33BE7AD1A533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F5EB0B2-3C4F-4B69-B9E2-33BE7AD1A533}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F5EB0B2-3C4F-4B69-B9E2-33BE7AD1A533}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
