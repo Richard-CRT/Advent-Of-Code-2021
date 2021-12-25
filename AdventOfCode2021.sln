@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_23_Amphipod", "Day_23_A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_24_Arithmetic_Logic_Unit", "Day_24_Arithmetic_Logic_Unit\Day_24_Arithmetic_Logic_Unit.csproj", "{1F5EB0B2-3C4F-4B69-B9E2-33BE7AD1A533}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_25_Sea_Cucumber", "Day_25_Sea_Cucumber\Day_25_Sea_Cucumber.csproj", "{AB4D27D9-4B37-40D9-B11C-6F447CFDE6BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{1F5EB0B2-3C4F-4B69-B9E2-33BE7AD1A533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F5EB0B2-3C4F-4B69-B9E2-33BE7AD1A533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F5EB0B2-3C4F-4B69-B9E2-33BE7AD1A533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB4D27D9-4B37-40D9-B11C-6F447CFDE6BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB4D27D9-4B37-40D9-B11C-6F447CFDE6BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB4D27D9-4B37-40D9-B11C-6F447CFDE6BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB4D27D9-4B37-40D9-B11C-6F447CFDE6BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
